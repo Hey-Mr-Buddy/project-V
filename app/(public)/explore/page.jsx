@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Calendar, MapPin, Users, ArrowRight, Loader2 } from "lucide-react";
 import { format } from "date-fns";
@@ -25,7 +25,9 @@ import EventCard from "@/components/event-card";
 
 export default function ExplorePage() {
   const router = useRouter();
-  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+  const [plugin] = useState(() =>
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
 
   // Fetch current user for location
   const { data: currentUser } = useConvexQuery(api.users.getCurrentUser);
@@ -101,10 +103,10 @@ export default function ExplorePage() {
       {featuredEvents && featuredEvents.length > 0 && (
         <div className="mb-16">
           <Carousel
-            plugins={[plugin.current]}
+            plugins={[plugin]}
             className="w-full"
-            onMouseEnter={plugin.current.stop}
-            onMouseLeave={plugin.current.reset}
+            onMouseEnter={() => plugin.stop()}
+            onMouseLeave={() => plugin.reset()}
           >
             <CarouselContent>
               {featuredEvents.map((event) => (

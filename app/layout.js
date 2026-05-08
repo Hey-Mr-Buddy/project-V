@@ -8,14 +8,18 @@ import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { Toaster } from "sonner";
 
 export const metadata = {
-  title: "Spott - Delightful Events Start Here",
+  title: "VictoRizz — Rizz of Victors",
   description: "Discover and create amazing events",
+  icons: {
+    icon: "/victorizz_logo.jpg", // Replace with the name of the image file you put in the 'public' folder
+  }
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-linear-to-br from-gray-950 via-zinc-900 to-stone-900 text-white">
+
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
